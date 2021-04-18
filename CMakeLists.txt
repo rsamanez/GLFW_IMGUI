@@ -14,18 +14,12 @@ if (UNIX)
     endif()
 endif()
 
-if (WIN32)
-    SET (PROGRAMS-PREFIX "c:/programs")
-else()
-    SET (PROGRAMS-PREFIX "~/programs")
-endif()
-add_library("glad" "${PROGRAMS-PREFIX}/glad/src/glad.c")
-find_library(GLFW glfw3 PATHS "${PROGRAMS-PREFIX}/glfw/lib")
+add_library("glad" "${PROJECT_SOURCE_DIR}/include/glad.c")
+find_library(GLFW libglfw.3.3.dylib)
 
 include_directories(
-    "${PROGRAMS-PREFIX}/glad/include"
-    "${PROGRAMS-PREFIX}/glfw/include"
-    )
+    ${PROJECT_SOURCE_DIR}/include
+)
 
 set(sources
     main.cpp
